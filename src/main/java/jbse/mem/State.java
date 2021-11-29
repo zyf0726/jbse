@@ -230,6 +230,16 @@ public final class State implements Cloneable {
      * must be reexecuted.
      */
     private boolean stutters;
+    
+// MODI BEGIN
+    private Value[] valArgs;
+    
+    public Value[] getValueArgs() {
+    	return this.valArgs;
+    }
+// MODI END
+    
+    
 
     /**
      * Constructor. It returns a virgin, pre-initial {@link State}.
@@ -2729,6 +2739,9 @@ public final class State implements Cloneable {
         final boolean isStatic = classMethodImpl.isMethodStatic(methodSignatureImpl);
         final MethodFrame f = new MethodFrame(methodSignatureImpl, classMethodImpl);
         final Value[] args = makeArgsSymbolic(f, isStatic);
+// MODI BEGIN
+        this.valArgs = args;
+// MODI END
         try {
             f.setArgs(args);
         } catch (InvalidSlotException e) {
@@ -3310,7 +3323,13 @@ public final class State implements Cloneable {
     public List<Clause> getPathCondition() {
         return this.pathCondition.getClauses();
     }
-
+    
+// MODI BEGIN
+    public PathCondition getRawPathCondition() {
+    	return this.pathCondition;
+    }
+// MODI END
+    
     /**
      * Returns the path condition clauses that have been pushed since
      * the last call of {@link #resetLastPathConditionClauses()}. Used to determine

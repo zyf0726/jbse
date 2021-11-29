@@ -20,6 +20,9 @@ import jbse.val.Simplex;
  * different branch points traversed during execution as a 
  * suitable {@link Collection}{@code <}{@link Clause}{@code >}. 
  */
+// MODI BEGIN
+public
+// MODI END
 final class PathCondition implements Cloneable {
     /** {@link ArrayList} of all the {@link Clause}s forming the path condition. */
     private ArrayList<Clause> clauses;
@@ -191,6 +194,9 @@ final class PathCondition implements Cloneable {
      * @return {@code true} iff {@code reference} is resolved.
      * @throws NullPointerException if {@code reference == null}.
      */
+// MODI BEGIN
+    public
+// MODI END
     boolean resolved(ReferenceSymbolic reference) {
         return this.referenceResolutionMap.containsKey(reference);
     }
@@ -205,6 +211,9 @@ final class PathCondition implements Cloneable {
      * {@code reference} has been resolved.
      * @throws NullPointerException if {@code reference == null}.
      */
+// MODI BEGIN
+    public
+// MODI END
     long getResolution(ReferenceSymbolic reference) {
         return this.referenceResolutionMap.get(reference);
     }
@@ -255,6 +264,9 @@ final class PathCondition implements Cloneable {
      * representing all the {@link Clause}s cumulated in {@code this}. 
      * It is valid until {@code this} is modified.
      */
+// MODI BEGIN
+    public
+// MODI END
     List<Clause> getClauses() {
         return Collections.unmodifiableList(this.clauses);
     }

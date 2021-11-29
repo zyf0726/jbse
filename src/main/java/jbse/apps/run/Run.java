@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 
 import jbse.JBSE;
@@ -163,6 +164,14 @@ public final class Run {
 
     /** The number of states traversed during the pre-initial phase. */
     private long preInitialStateCount = 0;
+
+// MODI BEGIN
+    private HashSet<State> pathsExecuted = new HashSet<>();
+    
+    public HashSet<State> getPathsExecuted() {
+    	return this.pathsExecuted;
+    }
+// MODI END
 
     /**
      * Constructor.
@@ -438,6 +447,11 @@ public final class Run {
         public boolean atPathEnd() {
             try {
                 final State currentState = Run.this.engine.getCurrentState();
+// MODI BEGIN
+                if (this.pathKind.equals(PathTypes.SAFE)) {
+                	Run.this.pathsExecuted.add(currentState);
+                }
+// MODI END
                 //prints the leaf state if the case
                 if (Run.this.parameters.getStepShowMode() == StepShowMode.ALL ||       //already shown
                     Run.this.parameters.getStepShowMode() == StepShowMode.SOURCE ||    //already shown
