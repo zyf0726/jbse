@@ -4127,4 +4127,11 @@ public final class State implements Cloneable {
 
         return o;
     }
+    
+// MODI BEGIN
+    public void cleanHeap() {
+    	this.heap = null;
+    }
+// MODI END
+    
 }
